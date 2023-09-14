@@ -5,6 +5,8 @@ import { createRouter, createWebHashHistory } from 'vue-router';// 创建路由�
 //组件 @/components/xx.vue
 //页面 @/views/XXX.vue
 
+import Home from "@/views/Home.vue";
+import About from "@/views/About.vue";
 
 const routes = [
    { path: '/', component: Home },
