@@ -7,14 +7,12 @@ import { createRouter, createWebHashHistory } from 'vue-router';// 创建路由�
 
 
 import Home from "@/views/Home.vue"
-import Dropdown from "@/views/Dropdown.vue";
 import About from "@/views/About.vue";
 import Star from "@/views/Star.vue"
 
 const routes = [
    { path: '/', component: Home },
    { path: '/about', component: About },
-   { path: '/drop', component: Dropdown },
    { path: '/star', component: Star },
 
 
