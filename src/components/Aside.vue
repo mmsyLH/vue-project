@@ -18,7 +18,7 @@ export default {
     </el-menu-item>
     <el-menu-item index="2">
       <el-icon></el-icon>
-      <span>作业2</span>
+      <span><RouterLink to="about">about</RouterLink></span>
     </el-menu-item>
     <el-menu-item index="3">
       <el-icon></el-icon>

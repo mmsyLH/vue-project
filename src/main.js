@@ -9,12 +9,14 @@ import App from './App.vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+import {createPinia} from 'pinia'
 
-
-
+//创建 Pinia实例
+const pinia=createPinia()
 const app = createApp(App);//确保 _use_ 路由实例使整个应用支持路由。
 app.use(router);// 挂载router,完成
 app.use(ElementPlus, {locale: zhCn,})
+app.use(pinia);//挂载pinia 完成
 app.mount('#app');
 
 // createApp(App).mount('#app')
