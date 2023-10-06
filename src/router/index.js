@@ -5,12 +5,17 @@ import { createRouter, createWebHashHistory } from 'vue-router';// 创建路由�
 //组件 @/components/xx.vue
 //页面 @/views/XXX.vue
 
-import Home from "@/views/Home.vue";
+
+import Home from "@/views/Home.vue"
 import About from "@/views/About.vue";
+import Star from "@/views/Star.vue"
 
 const routes = [
    { path: '/', component: Home },
    { path: '/about', component: About },
+   { path: '/star', component: Star },
+
+
 ]
 //创建路由管理 router
 const router = createRouter({// 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
