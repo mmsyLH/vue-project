@@ -22,7 +22,7 @@ export default {
     </el-menu-item>
     <el-menu-item index="3">
       <el-icon></el-icon>
-      <span>作业3</span>
+      <span><RouterLink to="loginRegister">登录注册</RouterLink></span>
     </el-menu-item>
     <el-menu-item index="4">
       <el-icon></el-icon>
