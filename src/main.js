@@ -13,6 +13,7 @@ import {createPinia} from 'pinia'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 
+
 //创建 Pinia实例
 const pinia=createPinia()
 const app = createApp(App);//确保 _use_ 路由实例使整个应用支持路由。

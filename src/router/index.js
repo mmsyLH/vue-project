@@ -10,12 +10,16 @@ import Home from "@/views/Home.vue"
 import About from "@/views/About.vue";
 import Star from "@/views/Star.vue"
 import LoginRegister from "@/views/LoginRegister.vue"
+import My from "@/views/user/my.vue"
+import Header from "@/components/Header.vue"
 
 const routes = [
    { path: '/', component: Home },
    { path: '/about', component: About },
    { path: '/star', component: Star },
    { path: '/loginRegister', component: LoginRegister },
+   { path: '/my', component: My },
+   { path: '/header', component: Header },
 
 
 ]

@@ -1,4 +1,9 @@
 <template>
+  <el-page-header @back="() => { this.$router.go(-1); }" class="go_back">
+    <template #content>
+      <span class="text-large font-600 mr-3" style="height: 100%;min-height: 20px">登录注册页面</span>
+    </template>
+  </el-page-header>
   <div class="container">
     <div class="forms-container">
       <div class="signin-signup">
