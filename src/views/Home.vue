@@ -3,13 +3,11 @@
 </script>
 <template>
   <div>
-    <div>任务一：
-      主页显示文章列表，每篇文章可以被阅读，阅读后可以点赞，点赞数初始为0;
-      并把代码上传到gitee或者github代码库进行管理。
-    </div>
-    <div>任务二：
-      主页显示文章列表，每篇文章可以被阅读，阅读后可以点赞，点赞数初始为0;
-      并把代码上传到gitee或者github代码库进行管理。
-    </div>
+    home
+    <span><RouterLink to="loginRegister">登录注册</RouterLink></span>
+<!--    <div>任务一：-->
+<!--      主页显示文章列表，每篇文章可以被阅读，阅读后可以点赞，点赞数初始为0;-->
+<!--      并把代码上传到gitee或者github代码库进行管理。-->
+<!--    </div>-->
   </div>
-</template>
+</template>`

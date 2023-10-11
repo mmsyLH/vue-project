@@ -9,13 +9,13 @@ import { createRouter, createWebHashHistory } from 'vue-router';// 创建路由�
 import Home from "@/views/Home.vue"
 import About from "@/views/About.vue";
 import Star from "@/views/Star.vue"
-import Login_Register from "@/views/Login-Register.vue"
+import LoginRegister from "@/views/LoginRegister.vue"
 
 const routes = [
    { path: '/', component: Home },
    { path: '/about', component: About },
    { path: '/star', component: Star },
-   { path: '/loginRegister', component: Login_Register },
+   { path: '/loginRegister', component: LoginRegister },
 
 
 ]
