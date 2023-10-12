@@ -115,13 +115,13 @@ export default {
         username: "",
         email: "",
         password: "",
-        confirmPassword:"",
-        userType:"",
-        userGender:"",
-        birthday:"",
-        interest:[],
-        emailAddress:"",
-        introduction:"",
+        confirmPassword: "",
+        userType: "",
+        userGender: "",
+        birthday: "",
+        interest: [],
+        emailAddress: "",
+        introduction: "",
       },
 
     };
@@ -173,4 +173,5 @@ export default {
 </script>
 
 <style>
+
 </style>

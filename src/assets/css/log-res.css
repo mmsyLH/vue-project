@@ -4,6 +4,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-size: 25px;
+    font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
 }
 
 body,
@@ -224,9 +226,10 @@ form.sign-in-form {
 }
 
 .panel h3 {
-    font-weight: 600;
+    font-weight: 60;
     line-height: 1;
     font-size: 1.5rem;
+    display:inline-block;
 }
 
 .panel p {
@@ -341,6 +344,7 @@ form.sign-in-form {
 
     .panel h3 {
         font-size: 1.2rem;
+
     }
 
     .panel p {
@@ -419,6 +423,7 @@ form.sign-in-form {
         left: 50%;
     }
 }
+
 /*
 注册框调整
 */
@@ -432,7 +437,8 @@ form.sign-in-form {
     padding-right: 0;
     /*margin-left: 20%;*/
 }
-.sign-up-form .el-form-item .el-input{
+
+.sign-up-form .el-form-item .el-input {
     min-height: 40px;
 }
 
@@ -445,7 +451,8 @@ form.sign-in-form {
     /*height: 10%;*/
     max-width: 500px;
 }
-.sign-in-form .el-form-item .el-input{
+
+.sign-in-form .el-form-item .el-input {
     min-height: 40px;
 }
 

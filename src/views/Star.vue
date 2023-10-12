@@ -11,7 +11,7 @@
           <img
               src="https://lhwaimai.oss-cn-beijing.aliyuncs.com/c3f96b08-bbe9-44a0-807a-f201ef909641.png"
               class="image"
-          />
+           alt=""/>
           <div style="padding: 14px">
             <span>{{ article.title }}</span>
             <p>{{ article.content }}</p>
@@ -60,7 +60,7 @@ onMounted(()=>{
 })
 </script>
 
-<style>
+<style scoped>
 .time {
   font-size: 12px;
   color: #999;

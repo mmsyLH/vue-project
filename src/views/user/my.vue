@@ -1,18 +1,22 @@
 <template>
   <el-page-header @back="goBack" class="go_back">
     <template #content>
-      <span class="text-large font-600 mr-3" style="height: 100%;min-height: 20px">个人页</span>
+      <el-text class="text-large font-600 mr-3" style="height: 100%;min-height: 20px">个人页</el-text>
     </template>
   </el-page-header>
+
   <el-container class="my_center">
     <el-header class="my_info">
       <el-avatar :icon="UserFilled" :size="100" class="avatar"/>
       <div class="user_info">
-        <span class="username">{{ toUserName }}</span>
-        <span class="user-level">{{ toUserLever }}</span>
+        <el-text class="username">{{ toUserName }}</el-text>
+        <el-text class="user-level">{{ toUserLever }}</el-text>
       </div>
     </el-header>
+
+
     <el-main class="my_container">
+
       <div class="box1">
         <div class="item1">
           <el-text class="mx-1" type="primary">{{ toBePaid }}</el-text>
@@ -27,30 +31,37 @@
           账户余额
         </div>
       </div>
-      <el-collapse  v-model="activeNames" @change="handleChange" class="collapse">
+
+      <el-collapse v-model="activeNames" @change="handleChange" class="collapse">
         <el-collapse-item name="2" @click="showOrder">
           <template #title>
-            <el-icon :size="20" style="margin-right: 20px"><Operation /></el-icon>
-             我的订单
+            <el-icon :size="20" style="margin-right: 20px">
+              <Operation/>
+            </el-icon>
+            <el-text>  我的订单</el-text>
           </template>
-          <i class="iconfont icon-dingdan"></i>
         </el-collapse-item>
         <el-collapse-item title="收货地址" name="3" @click="showAddress">
           <template #title>
-            <el-icon :size="20" style="margin-right: 20px"><Operation /></el-icon>
-            收货地址
+            <el-icon :size="20" style="margin-right: 20px">
+              <Operation/>
+            </el-icon>
+            <el-text>  收货地址</el-text>
+
           </template>
-          <i class="iconfont icon-dingdan"></i>
         </el-collapse-item>
         <el-collapse-item title="个人信息" name="4" @click="showInformation">
           <template #title>
-            <el-icon :size="20" style="margin-right: 20px"><Operation /></el-icon>
-            个人信息
+            <el-icon :size="20" style="margin-right: 20px">
+              <Operation/>
+            </el-icon>
+            <el-text>个人信息</el-text>
           </template>
-          <i class="iconfont icon-dingdan"></i>
         </el-collapse-item>
       </el-collapse>
+
     </el-main>
+
   </el-container>
 </template>
 
@@ -126,11 +137,16 @@ export default {
 //height: 2vh; background-color: #62a8ea;
 }
 
+* {
+  font-size: 30px;
+}
+
 .my_center {
   position: relative;
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
+
 }
 
 el-header {
@@ -161,7 +177,7 @@ el-header {
 
 .avatar, .username {
   margin: 10px;
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .user-level {
@@ -170,7 +186,7 @@ el-header {
 }
 
 .el-text {
-  font-size: 25px;
+  font-size: 30px;
 }
 
 .my_container {
@@ -203,12 +219,13 @@ el-header {
   align-items: center;
 }
 
+
 .el-collapse-item__content i {
   font-size: 40px;
   margin-bottom: 10px;
 }
 
-.el-collapse-item__content span {
+.el-collapse-item__content el-text {
   font-size: 16px;
 }
 </style>
