@@ -1,5 +1,5 @@
 <script>
-import { useCounterStore } from '@/stores/counter';
+import { useCounterStore } from '@/store/counter';
 import {login} from "@/http";
 export default {
   setup(){

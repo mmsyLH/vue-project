@@ -7,22 +7,23 @@
   <div class="container">
     <div class="forms-container">
       <div class="signin-signup">
-        <el-form :model="loginForm" class="sign-in-form"><h2 class="title">登录</h2>
+        <el-form :model="loginForm" class="sign-in-form" ref="loginForm"><h2 class="title">登录</h2>
           <el-form-item prop="username">
-            <el-input prefix-icon="el-icon-user" placeholder="用户名" v-model="loginForm.username"></el-input>
+            <el-input prefix-icon="el-icon-user" placeholder="邮箱" v-model="loginForm.email"></el-input>
           </el-form-item>
           <el-form-item prop="password">
             <el-input prefix-icon="el-icon-lock" placeholder="密码" v-model="loginForm.password"
                       show-password></el-input>
           </el-form-item>
+          <el-checkbox v-model="loginForm.rememberMe">记住密码</el-checkbox>
           <el-form-item>
-            <el-button round style="height: 35px" class="btn solid" @click.prevent="login">登 录</el-button>
+            <el-button round style="height: 35px" class="btn solid" @click.native.prevent="login">登 录</el-button>
           </el-form-item>
         </el-form>
-        <el-form :model="registerForm" class="sign-up-form"><h2 class="title">注册</h2>
-          <el-form-item prop="username"
-                        :rules="[{ required: true, message: '请输入用户名' }, { pattern: /^[a-zA-Z0-9_-]{4,16}$/, message: '用户名必须是4-16位字母、数字、下划线或减号' }]">
-            <el-input clearable type="text" placeholder="用户名" v-model="registerForm.username">
+
+        <el-form :model="registerForm" class="sign-up-form" ref="registerForm"><h2 class="title">注册</h2>
+          <el-form-item prop="username">
+            <el-input clearable type="text" placeholder="用户名" v-model="registerForm.userName">
               <template slot="prepend"><i class="el-icon-user"></i></template>
             </el-input>
           </el-form-item>
@@ -32,44 +33,15 @@
           <el-form-item prop="password">
             <el-input type="password" placeholder="密码" v-model="registerForm.password"></el-input>
           </el-form-item>
-          <el-form-item prop="confirmPassword">
-            <el-input type="password" placeholder="确认密码" v-model="registerForm.confirmPassword"></el-input>
-          </el-form-item>
-          <el-form-item prop="userType">
-            <el-select v-model="registerForm.userType" placeholder="请选择用户类型">
-              <el-option label="普通用户" value="normal"></el-option>
-              <el-option label="VIP用户" value="vip"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item prop="userGender">
-            <div>用户性别</div>
-            <el-radio-group v-model="registerForm.userGender">
-              <el-radio label="male">男</el-radio>
-              <el-radio label="female">女</el-radio>
-            </el-radio-group>
-          </el-form-item>
-          <el-form-item prop="birthday">
-            <el-date-picker type="date" placeholder="出生日期" v-model="registerForm.birthday"></el-date-picker>
-          </el-form-item>
-          <el-form-item prop="interest">
-            <div>兴趣爱好</div>
-            <el-checkbox-group v-model="registerForm.interest">
-              <el-checkbox label="reading">阅读</el-checkbox>
-              <el-checkbox label="music">音乐</el-checkbox>
-              <el-checkbox label="sports">运动</el-checkbox>
-            </el-checkbox-group>
-          </el-form-item>
-          <el-form-item prop="emailAddress">
-            <el-input type="text" placeholder="电子邮件" v-model="registerForm.emailAddress"></el-input>
-          </el-form-item>
-          <el-form-item prop="introduction">
-            <el-input type="textarea" placeholder="自我介绍" v-model="registerForm.introduction"></el-input>
-          </el-form-item>
+          <!--          <el-form-item prop="confirmPassword">-->
+          <!--            <el-input type="password" placeholder="确认密码" v-model="registerForm.confirmPassword"></el-input>-->
+          <!--          </el-form-item>-->
           <el-form-item>
             <el-button round style="height: 35px" class="btn" @click.prevent="register">注 册</el-button>
             <el-button round style="height: 35px" class="btn" @click.prevent="resetForm">重 置</el-button>
           </el-form-item>
         </el-form>
+
       </div>
     </div>
 
@@ -96,37 +68,41 @@
 
 <script>
 import "../assets/css/log-res.css"
-import SocialMedia from '../components/social-media.vue'
+import SocialMedia from '@/components/social-media.vue'
+import {useUserStore} from '@/store/modules/user';
+import {ElMessage} from "element-plus";
+
 
 export default {
   components: {
     SocialMedia,
   },
+  computed: {
+    userStore() {
+      return useUserStore();
+    },
+  },
+
   data() {
     return {
       showLogin: true,
       showRegister: false,
       loginForm: {
-        username: "",
-        password: "",
+        email: "1072344372@qq.com",
+        password: "123456789",
+        rememberMe: "false",
       },
 
       registerForm: {
-        username: "",
+        userName: "",
         email: "",
         password: "",
-        confirmPassword: "",
-        userType: "",
-        userGender: "",
-        birthday: "",
-        interest: [],
-        emailAddress: "",
-        introduction: "",
       },
-
+      loading: false,
     };
   },
   methods: {
+
     showLoginForm() {
       this.showLogin = true;
       this.showRegister = false;
@@ -136,25 +112,37 @@ export default {
       this.showRegister = true;
     },
     login() {
-      // 处理登录逻辑
+      this.userStore.login(this.loginForm)
+          .then((res) => {
+            if (res.code===1){
+              // ElMessage.success(res.msg||"登录成功");
+              ElMessage.success("登录成功");
+              this.showLogin = true;
+              this.showRegister = false;
+            }
+          })
+          .catch(error => {
+          });
     },
+
+
     register() {
-      // 处理注册逻辑
+      this.userStore.register(this.registerForm)
+          .then(res=> {
+            if (res.code===1){
+              ElMessage.success(res.message?res.message:"注册成功");
+              this.showLogin = true;
+              this.showRegister = false;
+            }
+          }).catch(error => {
+
+          });
     },
-    resetForm() {//重置
-      this.loginForm.username = "";
-      this.loginForm.password = "";
-      this.registerForm.username = "";
-      this.registerForm.email = "";
-      this.registerForm.password = "";
-      this.registerForm.confirmPassword = "";
-      this.registerForm.userType = "";
-      this.registerForm.userGender = "";
-      this.registerForm.birthday = "";
-      this.registerForm.interest = [];
-      this.registerForm.emailAddress = "";
-      this.registerForm.introduction = "";
-    },
+    resetForm() {//重置表单
+      this.$refs.loginForm.resetFields()
+      this.$refs.registerForm.resetFields()
+    }
+
   },
   mounted() {
     const sign_in_btn = document.querySelector("#sign-in-btn");

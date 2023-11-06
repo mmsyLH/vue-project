@@ -11,6 +11,7 @@
     "@element-plus/icons-vue": "^2.1.0",
     "axios": "^1.5.0",
     "element-plus": "^2.3.12",
+    "js-cookie": "^3.0.5",
     "pinia": "^2.1.6",
     "unplugin-element-plus": "^0.8.0",
     "vue": "^3.3.4",
