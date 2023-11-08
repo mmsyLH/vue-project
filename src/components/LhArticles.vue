@@ -4,6 +4,8 @@
       <lh-article
           v-for="article in articles"
           :key="article.id"
+          :articleId="article.id.toString()"
+          :userinfoId="article.userinfoId.toString()"
           :title="article.title"
           :content="article.content"
           :update-time="article.updateTime"

@@ -1,9 +1,8 @@
-<template>
-
-  <div class="aside-menu-hr">
+<template >
+  <div class="aside-menu-hr" >
     <el-affix :offset="0">
       <el-button @click="openCatDrawer">
-        <el-button :icon="UserFilled">按钮</el-button>
+        <el-button :icon="UserFilled">分类</el-button>
       </el-button>
       <el-drawer class="cat-list" v-model="catDrawer" title="文章分类" size="40%" direction="ltr">
         <LhCats :catList="catList" @curCat="changeCat"></LhCats>

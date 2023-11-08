@@ -46,7 +46,7 @@
     </div>
 
     <div class="panels-container">
-      <div class="panel left-panel">
+      <div class="panel left-panel" style="max-height: 1200px;margin-top: 30px">
         <div class="content">
           <h3>新用户?</h3>
           <p>好兄弟,你来了,我们的网站就差你的加入了,点击下方注册按钮加入我们吧!!</p>
@@ -112,17 +112,15 @@ export default {
       this.showRegister = true;
     },
     login() {
-      this.userStore.login(this.loginForm)
-          .then((res) => {
+      this.userStore.login(this.loginForm).then((res) => {
             if (res.code===1){
               // ElMessage.success(res.msg||"登录成功");
               ElMessage.success("登录成功");
               this.showLogin = true;
               this.showRegister = false;
               router.push("/my");
+              this.userStore.all();
             }
-          })
-          .catch(error => {
           });
     },
 

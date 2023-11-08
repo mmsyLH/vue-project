@@ -19,6 +19,13 @@ const login=(data)=>{
         data
     })
 }
+export const all=()=>{
+    return axios.request({
+        url:'/api/userinfo/all',//api/mobile/elogin
+        method:'get',
+    })
+}
+
 //导出请求方法
 export {
     login,register,

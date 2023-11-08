@@ -26,10 +26,6 @@ export default {
       type: String,
       required: true,
     },
-    articleId: {
-      type: String,
-      required: true,
-    },
     userinfoId: {
       type: String,
       required: true,

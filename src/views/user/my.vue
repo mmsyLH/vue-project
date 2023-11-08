@@ -310,13 +310,15 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .el-form-item label {
   font-size: 30px;
 }
 </style>
 <style scoped>
-
+.el-main{
+  --el-main-padding:0px;
+}
 .go_back {
 //height: 2vh; background-color: #62a8ea;
 }

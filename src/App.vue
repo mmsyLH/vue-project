@@ -1,6 +1,6 @@
 <script>
-import Header from '@/components/Header.vue';
-import Footer from "@/components/Footer.vue";
+import Header from '@/components/LhHeader.vue';
+import Footer from "@/components/LhFooter.vue";
 
 export default {
   name: "Layout",
@@ -13,10 +13,10 @@ export default {
 <template>
   <div class="common-layout">
     <el-container>
-      <el-header>
+      <el-header  style="height: 50px;padding-left:0">
         <Header/>
       </el-header>
-      <el-main class="main">
+      <el-main class="main" style="border: #F2F2F2 3px solid;--el-main-padding:0px">
       <RouterView></RouterView>
       </el-main>
       <Footer></Footer>

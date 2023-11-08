@@ -4,7 +4,7 @@
         class="nav-tab-item"
         :class="{'active': activeIndex === index}"
         v-for="(item, index) in items"
-        @click="activeIndex = index"
+        @click="handleNavigation(item.path, index)"
         :key="index"
     >
       <i :class="['nav-tab-item_icon', 'iconfont', item.icon]"></i>
@@ -21,21 +21,18 @@
 import {ref} from 'vue';
 import router from "@/router";
 
-
 const items = ref([
-  {icon: 'icon-shouye', label: '首页', router: ""},
-  {icon: 'icon-guanzhu', label: '关注', router: ""},
-  {icon: 'icon-faxian', label: '个人页', router: ""},
-  {icon: 'icon-xiaoxizhongxin', label: '登录页面'},]
-)
-const activeIndex = ref(0)
+  {icon: 'icon-shouye', label: '首页', path: "/"},
+  {icon: 'icon-guanzhu', label: '关注', path: ""},
+  {icon: 'icon-faxian', label: '个人页', path: "/my"},
+  {icon: 'icon-xiaoxizhongxin', label: '登录页面', path: "/loginRegister"},
+]);
+const activeIndex = ref(0);
 
-const handleNavigation = (index) => {
-  activeIndex.value = index;
-  router.push(items.value[index].path);
+const handleNavigation = (path, index) => {
+  activeIndex.value = index; // 更新 activeIndex
+  router.push(path);
 };
-
-
 </script>
 
 <style scoped>

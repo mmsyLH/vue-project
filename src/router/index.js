@@ -1,12 +1,7 @@
-//route 访问路径，路由
-//router 路由管理者
 import {createRouter, createWebHashHistory} from 'vue-router';// 创建路由实例并传递 `routes` 配置const router = createRouter({// 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
-//创建路由 route
-//组件 @/components/xx.vue
-//页面 @/views/XXX.vue
 
 //测试布局代码开始
-import Footer from "@/components/Footer.vue"
+import Footer from "@/components/LhFooter.vue"
 
 
 
@@ -14,7 +9,7 @@ import Footer from "@/components/Footer.vue"
 import Home from "@/views/Home.vue"
 import LoginRegister from "@/views/LoginRegister.vue"
 import My from "@/views/user/my.vue"
-import Header from "@/components/Header.vue"
+import Header from "@/components/LhHeader.vue"
 // import DetailedAddress from "@/components/detailedAddress.vue"
 import {getToken} from "@/utils/auth";
 import {ElMessage} from "element-plus";
@@ -24,10 +19,10 @@ const routes = [
     //测试开始
     {path: '/footer', component: Footer},
     //测试结束
-    {path: '/', component: Home},
+    {path: '/', component: Home},//首页
     {path: '/home', component: Home},
-    {path: '/loginRegister', component: LoginRegister},
-    {path: '/my', component: My},
+    {path: '/loginRegister', component: LoginRegister},//注册登录页
+    {path: '/my', component: My},//个人页
     {path: '/header', component: Header},
 
 ]
@@ -40,32 +35,27 @@ const router = createRouter({// 内部提供了 history 模式的实现。为了
 
 //路由全局守卫
 router.beforeEach((to, from, next) => {
-
-    //  1重点获取token pinia
-    //  2判断token是否存在
-    //  3跳转到相应页面
     const token = getToken();
     // console.log('..............................token................');
-    //
-    // console.log(token);
     // console.log('..............................to...............');
-    //
     // console.log(to);
     // console.log('..............................from...............');
-    //
     // console.log(from);
     if (token) {
-        next();
+        if (to.path === '/loginRegister') {
+            ElMessage.warning("您已登录了，请先退出~");
+        }else{
+            next();
+        }
     } else {
+        ElMessage.warning("请先登录~");
         // 用户未登录判断
         if (to.path === '/loginRegister' || to.path === '/index' || to.name === "index" || to.path === '/register' || to.name === "forgot") {
-            ElMessage.warning("请先登录~");
             next();
         } else {
             next({path: '/loginRegister'});
         }
     }
-
 })
 
 //导出路由
