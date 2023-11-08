@@ -35,7 +35,6 @@
               <Operation/>
             </el-icon>
             <el-text> 我的文章</el-text>
-
           </template>
           <div v-if="showMyArticleContent">
             <div class="articles-list">
@@ -44,6 +43,7 @@
                   <h3>{{ truncateTitle(article.title) }}</h3>
                   <el-button type="default" class="button"  @click="detail">查看详情</el-button>
                   <el-button type="default" class="button"  @click="detail">修改文章</el-button>
+                  <el-button type="danger" class="button"  @click="handleDel">删除</el-button>
                 </div>
 
                 <div>{{ truncateContent(article.content, 3) }}</div>
@@ -214,7 +214,28 @@ export default {
     truncateTitle(title) {
       return title.length > 10 ? title.slice(0, 10) + '...' : title;
     },
-
+    //删除文章
+    handleDel(id) {//回显的方法
+      // console.log("要删除的id:", id);
+      request.delete("/api/del/" + id).then(res => {
+        if (res.code === 200) {
+          //提示一个成功的消息框
+          this.$message({
+            type: "success",
+            message: "删除成功"
+          })
+        } else {
+          //提示一个错误的消息框
+          this.$message({
+            type: "error",
+            message: "删除失败"
+          })
+        }
+        //关闭对话框 更新数据
+        this.dialogVisible = false;
+        this.list();
+      })
+    },
     //添加弹窗
     addArticle() {
       this.dialogVisible = true;

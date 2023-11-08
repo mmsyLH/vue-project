@@ -5,20 +5,16 @@ import {createRouter, createWebHashHistory} from 'vue-router';// 创建路由实
 //组件 @/components/xx.vue
 //页面 @/views/XXX.vue
 
-//测试开始
+//测试布局代码开始
 import Footer from "@/components/Footer.vue"
-import Borrow from "@/views/user/Borrow.vue"
-import Layout from "@/views/Layout.vue"
-import ArticleIndex from "@/views/article/ArticleIndex.vue"
+
+
 
 //测试结束
 import Home from "@/views/Home.vue"
-import About from "@/views/About.vue";
-import Star from "@/views/Star.vue"
 import LoginRegister from "@/views/LoginRegister.vue"
 import My from "@/views/user/my.vue"
 import Header from "@/components/Header.vue"
-import Article from "@/components/Article.vue"
 // import DetailedAddress from "@/components/detailedAddress.vue"
 import {getToken} from "@/utils/auth";
 import {ElMessage} from "element-plus";
@@ -27,20 +23,12 @@ const routes = [
 
     //测试开始
     {path: '/footer', component: Footer},
-    {path: '/borrow', component: Borrow},
-    {path: '/layout', component: Layout},
-    {path: '/articleIndex', component: ArticleIndex},
     //测试结束
-    {path: '/', component: ArticleIndex},
+    {path: '/', component: Home},
     {path: '/home', component: Home},
-    {path: '/about', component: About},
-    {path: '/star', component: Star},
     {path: '/loginRegister', component: LoginRegister},
     {path: '/my', component: My},
     {path: '/header', component: Header},
-    {path: '/article', component: Article},
-    // {path: '/detailedAddress', component: DetailedAddress},
-
 
 ]
 //创建路由管理 router

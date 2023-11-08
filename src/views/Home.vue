@@ -1,35 +1,30 @@
 <template>
-  123
+
   <div class="aside-menu-hr">
     <el-affix :offset="0">
       <el-button @click="openCatDrawer">
-        <el-button :icon="UserFilled"  >按钮</el-button>
+        <el-button :icon="UserFilled">按钮</el-button>
       </el-button>
       <el-drawer class="cat-list" v-model="catDrawer" title="文章分类" size="40%" direction="ltr">
         <LhCats :catList="catList" @curCat="changeCat"></LhCats>
       </el-drawer>
     </el-affix>
   </div>
-  <!--    <el-container>
-          <el-aside class="aside-menu-vt">
-              <el-menu mode="vertical" :default-active="currenIndex">
-                  <el-menu-item :index="index" v-for="(item, index) in articles" @click="changeContent(item, index)">
-                      {{ item.shortTitle }}
-                  </el-menu-item>
-              </el-menu>
-          </el-aside>
-          <el-container>
-              <el-main class="content">
-                  <cjb-articles :articles="articles"></cjb-articles>
-              </el-main>
-          </el-container>
-      </el-container>-->
+  <el-container>
+    <el-container>
+      <el-main class="content">
+        <LhArticles :categoryId="curCat" ref="articlesComponent"></LhArticles>
+      </el-main>
+    </el-container>
+  </el-container>
 </template>
 
 <script>
 import LhCats from "@/components/LhCats.vue";
+import LhArticles from "@/components/LhArticles.vue";
 import {UserFilled} from "@element-plus/icons-vue";
 import {useArticleStore} from "@/store/modules/article";
+
 export default {
   computed: {
     useArticleStore() {
@@ -39,13 +34,13 @@ export default {
       return UserFilled
     }
   },
-  components: {LhCats},
+  components: {LhCats, LhArticles},
   created() {
-    // this.currenIndex = 0;
-    // let article = this.articles[this.currenIndex];
-    // this.content = article.content;
-    // this.like = article.like;
-    // this.isLike = article.isLike;
+    this.currenIndex = 0;
+    let article = this.articles[this.currenIndex];
+    this.content = article.content;
+    this.like = article.like;
+    this.isLike = article.isLike;
   },
   mounted() {
     this.initArticle();
@@ -85,15 +80,22 @@ export default {
     }
   },
   methods: {
-/*    changeContent(item, index) {
+    changeContent(item, index) {
       //更改当前所在文章索引
       this.currenIndex = index;
       //切换页面文章数据
       this.content = item.content;
       this.like = item.like;
       this.isLike = item.isLike;
-    },*/
-/*    doLike() {
+
+      // 获取当前文章的分类 ID
+      const categoryId = item.categoryId; // 假设文章对象中有 categoryId 字段表示分类 ID
+      console.log("当前文章的分类 ID为：", categoryId)
+      // 传递分类 ID 给 LhArticles 子组件
+      this.$refs.articlesComponent.changeCategory(categoryId);
+
+    },
+    doLike() {
       let article = this.articles[this.currenIndex];
       //更新点赞数
       if (article.isLike) {
@@ -106,25 +108,25 @@ export default {
       //切换页面文章数据
       this.like = article.like;
       this.isLike = article.isLike;
-    },*/
+    },
     openCatDrawer() {
       this.catDrawer = true;
     },
-    initArticle() {
+    initArticle() {//初始化文章列表
       this.useArticleStore.articleCatAll().then(res => {
         this.catList = res.data.articleCats;
-        console.log("查询结果",res.data.articleCats)
         this.changeArticles();
       })
     },
-    changeCat(curCat){
+    changeCat(curCat) {
       this.curCat = curCat;
       this.changeArticles();
       console.log(this.articles);
     },
-    changeArticles(){
-      this.useArticleStore.getArticlesByCateId(this.curCat).then(res=>{
+    changeArticles() {//文章发生改变的时候
+      this.useArticleStore.getArticlesByCateId(this.curCat).then(res => {
         this.articles = res.data.articles;
+
       });
     }
   }

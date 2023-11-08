@@ -12,45 +12,41 @@
     </div>
     <div
         class="nav-tab-overlay"
-        :style="{'left': activeIndex * 130 + 'px'}"
+        :style="{'left': activeIndex * 25 + 'vw'}"
     ></div>
   </div>
 </template>
 
-<script>
-import { reactive } from 'vue';
+<script setup>
+import {ref} from 'vue';
+import router from "@/router";
 
-export default {
-  setup() {
-    const items = reactive([
-      { icon: 'icon-shouye', label: '首页' },
-      { icon: 'icon-guanzhu', label: '关注' },
-      { icon: 'icon-faxian', label: '发现' },
-      { icon: 'icon-xiaoxizhongxin', label: '消息中心' },
-    ]);
 
-    let activeIndex = 0;
+const items = ref([
+  {icon: 'icon-shouye', label: '首页', router: ""},
+  {icon: 'icon-guanzhu', label: '关注', router: ""},
+  {icon: 'icon-faxian', label: '个人页', router: ""},
+  {icon: 'icon-xiaoxizhongxin', label: '登录页面'},]
+)
+const activeIndex = ref(0)
 
-    return {
-      items,
-      activeIndex,
-    };
-  },
+const handleNavigation = (index) => {
+  activeIndex.value = index;
+  router.push(items.value[index].path);
 };
+
+
 </script>
 
 <style scoped>
 @import url('https://at.alicdn.com/t/font_1471409_g6hvg6yqo15.css');
-/* 配色方案:
-背景:7dbfff,
-图标&标签:4298e7,
-遮罩:e4f2ff */
-*{
+
+* {
   margin: 0;
   padding: 0;
 }
 
-body{
+body {
   height: 100vh;
   background-color: #7dbfff;
 
@@ -60,24 +56,24 @@ body{
   align-items: center;
 }
 
-#nav-tab{
-  position: relative;
-
-  width: 100vw;
-  height: 150px;
-  background-color: #fff;
+#nav-tab {
+  position: fixed;
+  left: 0;
+  bottom: 0;
   display: flex;
+  width: 100vw;
+  height: 8vh;
+  background-color: #fff;
 
   border-radius: 20px 20px 90px 90px;
 
   overflow: hidden;
 
-  border: 20px solid white;
+  border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
-.nav-tab-item{
-  width: 130px;
-  height: 100%;
+.nav-tab-item {
+//width: 130px; flex: 1; height: 100%;
 
   z-index: 2;
   transition: .3s;
@@ -91,35 +87,35 @@ body{
   justify-content: center;
 }
 
-.nav-tab-item.active{
+.nav-tab-item.active {
   width: 210px;
 }
 
-.nav-tab-item_icon{
+.nav-tab-item_icon {
   font-size: 32px;
-  color:#4298e7;
+  color: #4298e7;
   transition: .3s;
-  transform: translate(0,0px);
+  transform: translate(0, 0px);
 }
 
-.active .nav-tab-item_icon{
-  transform: translate(0,-10px);
+.active .nav-tab-item_icon {
+  transform: translate(0, -10px);
 
 }
 
-.nav-tab-item_label{
+.nav-tab-item_label {
   font-size: 20px;
-  color:#4298e7;
+  color: #4298e7;
   opacity: 0;
   transition: .3s;
   user-select: none;
 }
 
-.active .nav-tab-item_label{
+.active .nav-tab-item_label {
   opacity: 1;
 }
 
-.nav-tab-overlay{
+.nav-tab-overlay {
   position: absolute;
   left: 0;
   top: 0;
@@ -130,6 +126,6 @@ body{
   background-color: #e4f2ff;
   border-radius: 20px;
 
-  transition:.3s;
+  transition: .3s;
 }
 </style>
