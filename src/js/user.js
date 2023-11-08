@@ -1,4 +1,3 @@
-// src/http/index.js
 //创建统一请求api
 import axios from '../http/axios'
 /**

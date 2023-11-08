@@ -1,25 +1,64 @@
-// src/http/index.js
-//创建统一请求api
 import axios from '../http/axios'
-/**
- @author 吴宗波
- @params data 请求参数 json 格式
- @description 用户登录方法
- */
-const login=(data)=>{
+export const addByArticle=(data)=>{
     return axios.request({
-        url:'/api/userinfo/login',//api/mobile/elogin
+        url:'/api/article/add',//api/mobile/elogin
         method:'post',
         data
     })
 }
-const getArticleById=(id)=>{
+const all=()=>{
     return axios.request({
-        url:'/api/article/one?id='+{id},//api/mobile/elogin
+        url:'/api/article/all',//api/mobile/elogin
         method:'get',
     })
 }
+const deleteById=(id)=>{
+    return axios.request({
+        url:'/api/article/delete/{id}='+id,//api/mobile/elogin
+        method:'get',
+    })
+}
+const edit=(article)=>{
+    return axios.request({
+        url:'/api/article/edit',//api/mobile/elogin
+        method:'post',
+    })
+}
+
+const getArticlesByUserId=(id)=>{
+    return axios.request({
+        url:'/api/article/getArticles/'+id,//api/mobile/elogin
+        method:'get',
+    })
+}
+const oneById=(data)=>{
+    return axios.request({
+        url:'/api/article/one',//api/mobile/elogin
+        method:'get',
+        data
+    })
+}
+const getArticlesByPage=(data)=>{
+    return axios.request({
+        url:'/api/article/page',//api/mobile/elogin
+        method:'post',
+        data
+    })
+}
+const getArticlesByCateId=(cateId)=>{
+    return axios.request({
+        url:'/api/article/'+cateId,//api/mobile/elogin
+        method:'get',
+    })
+}
+export const articleCatAll=()=>{
+    return axios.request({
+        url:'/api/articleCat/all',//api/mobile/elogin
+        method:'get',
+    })
+}
+
 //导出请求方法
 export {
-    login,getArticleById,
+all,deleteById,edit,getArticlesByUserId,getArticlesByCateId,getArticlesByPage,oneById,
 }

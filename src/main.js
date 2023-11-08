@@ -11,16 +11,20 @@ import 'element-plus/dist/index.css'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import {createPinia} from 'pinia'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-
+//pinia持久化
+import { createPersistedState } from 'pinia-persistedstate-plugin'
 
 
 //创建 Pinia实例
 const pinia=createPinia()
+const persist=createPersistedState();
 const app = createApp(App);//确保 _use_ 路由实例使整个应用支持路由。
 //引入图标库
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
+//持久化
+pinia.use(persist)
 app.use(router);// 挂载router,完成
 app.use(ElementPlus, {locale: zhCn,})
 app.use(pinia);//挂载pinia 完成

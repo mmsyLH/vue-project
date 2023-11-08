@@ -1,4 +1,3 @@
-//src/stores/counter.js
 import { defineStore } from "pinia";
 export const useCounterStore = defineStore('counter', {
     state: () => ({ count: 0, name: 'Eduardo' }),//用来存储全局的状态的

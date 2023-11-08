@@ -67,10 +67,10 @@
 </template>
 
 <script>
-import "../assets/css/log-res.css"
 import SocialMedia from '@/components/social-media.vue'
 import {useUserStore} from '@/store/modules/user';
 import {ElMessage} from "element-plus";
+import router from "@/router";
 
 
 export default {
@@ -119,6 +119,7 @@ export default {
               ElMessage.success("登录成功");
               this.showLogin = true;
               this.showRegister = false;
+              router.push("/my");
             }
           })
           .catch(error => {
@@ -160,6 +161,6 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
+@import "../assets/css/log-res.css";
 </style>

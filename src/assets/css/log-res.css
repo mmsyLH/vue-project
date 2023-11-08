@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-size: 25px;
+    font-size: 26px;
     font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
 }
 
@@ -63,7 +63,7 @@ form.sign-in-form {
 }
 
 .title {
-    font-size: 2.2rem;
+    font-size: 2.0rem;
     color: #444;
     margin-bottom: 10px;
 }

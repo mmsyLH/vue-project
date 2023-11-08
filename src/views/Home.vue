@@ -1,16 +1,144 @@
-<script>
-
-</script>
 <template>
-  <div>
-    <span><RouterLink to="loginRegister">登录注册界面</RouterLink></span>
+  123
+  <div class="aside-menu-hr">
+    <el-affix :offset="0">
+      <el-button @click="openCatDrawer">
+        <el-button :icon="UserFilled"  >按钮</el-button>
+      </el-button>
+      <el-drawer class="cat-list" v-model="catDrawer" title="文章分类" size="40%" direction="ltr">
+        <LhCats :catList="catList" @curCat="changeCat"></LhCats>
+      </el-drawer>
+    </el-affix>
+  </div>
+  <!--    <el-container>
+          <el-aside class="aside-menu-vt">
+              <el-menu mode="vertical" :default-active="currenIndex">
+                  <el-menu-item :index="index" v-for="(item, index) in articles" @click="changeContent(item, index)">
+                      {{ item.shortTitle }}
+                  </el-menu-item>
+              </el-menu>
+          </el-aside>
+          <el-container>
+              <el-main class="content">
+                  <cjb-articles :articles="articles"></cjb-articles>
+              </el-main>
+          </el-container>
+      </el-container>-->
+</template>
 
-<!--    <div>任务一：-->
-<!--      主页显示文章列表，每篇文章可以被阅读，阅读后可以点赞，点赞数初始为0;-->
-<!--      并把代码上传到gitee或者github代码库进行管理。-->
-<!--    </div>-->
-  </div>
-  <div>
-    <span><RouterLink to="my">用户界面</RouterLink></span>
-  </div>
-</template>`
+<script>
+import LhCats from "@/components/LhCats.vue";
+import {UserFilled} from "@element-plus/icons-vue";
+import {useArticleStore} from "@/store/modules/article";
+export default {
+  computed: {
+    useArticleStore() {
+      return useArticleStore();
+    },
+    UserFilled() {
+      return UserFilled
+    }
+  },
+  components: {LhCats},
+  created() {
+    // this.currenIndex = 0;
+    // let article = this.articles[this.currenIndex];
+    // this.content = article.content;
+    // this.like = article.like;
+    // this.isLike = article.isLike;
+  },
+  mounted() {
+    this.initArticle();
+  },
+  data() {
+    return {
+      content: "",
+      like: 0,
+      isLike: false,
+      currenIndex: 0,
+      catDrawer: false,
+      catList: [],
+      curCat: 1,
+      articles: [
+        {
+          shortTitle: "Button 按钮",
+          title: "Button 按钮",
+          content: "使用 type、plain、round 和 circle 来定义按钮的样式。",
+          like: 0,
+          isLike: false
+        },
+        {
+          shortTitle: "Border 边框",
+          title: "Border 边框",
+          content: "我们对边框进行统一规范，可用于按钮、卡片、弹窗等组件里。",
+          like: 0,
+          isLike: false
+        },
+        {
+          shortTitle: "Color 色彩",
+          title: "Color 色彩",
+          content: "Element Plus 为了避免视觉传达差异，使用一套特定的调色板来规定颜色，为你所搭建的产品提供一致的外观视觉感受。",
+          like: 0,
+          isLike: false
+        }
+      ]
+    }
+  },
+  methods: {
+/*    changeContent(item, index) {
+      //更改当前所在文章索引
+      this.currenIndex = index;
+      //切换页面文章数据
+      this.content = item.content;
+      this.like = item.like;
+      this.isLike = item.isLike;
+    },*/
+/*    doLike() {
+      let article = this.articles[this.currenIndex];
+      //更新点赞数
+      if (article.isLike) {
+        article.like--;
+        article.isLike = false;
+      } else {
+        article.like++;
+        article.isLike = true;
+      }
+      //切换页面文章数据
+      this.like = article.like;
+      this.isLike = article.isLike;
+    },*/
+    openCatDrawer() {
+      this.catDrawer = true;
+    },
+    initArticle() {
+      this.useArticleStore.articleCatAll().then(res => {
+        this.catList = res.data.articleCats;
+        console.log("查询结果",res.data.articleCats)
+        this.changeArticles();
+      })
+    },
+    changeCat(curCat){
+      this.curCat = curCat;
+      this.changeArticles();
+      console.log(this.articles);
+    },
+    changeArticles(){
+      this.useArticleStore.getArticlesByCateId(this.curCat).then(res=>{
+        this.articles = res.data.articles;
+      });
+    }
+  }
+}
+</script>
+
+
+<style scoped>
+.el-aside {
+  padding: 48px 32px 0 0;
+}
+
+.el-aside,
+.el-menu {
+  border: 0;
+}
+</style>
