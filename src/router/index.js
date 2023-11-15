@@ -1,11 +1,12 @@
 import {createRouter, createWebHashHistory} from 'vue-router';// 创建路由实例并传递 `routes` 配置const router = createRouter({// 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
 
 //测试布局代码开始
-import Footer from "@/components/LhFooter.vue"
 
+import LhArticleDetails from "@/components/LhArticleDetails.vue"
 
 
 //测试结束
+import Footer from "@/components/LhFooter.vue"
 import Home from "@/views/Home.vue"
 import LoginRegister from "@/views/LoginRegister.vue"
 import My from "@/views/user/my.vue"
@@ -17,8 +18,9 @@ import {ElMessage} from "element-plus";
 const routes = [
 
     //测试开始
-    {path: '/footer', component: Footer},
+    {path: '/lhArticleDetails',name:"lhArticleDetails", component: LhArticleDetails},
     //测试结束
+    {path: '/footer', component: Footer},
     {path: '/', component: Home},//首页
     {path: '/home', component: Home},
     {path: '/loginRegister', component: LoginRegister},//注册登录页

@@ -88,7 +88,7 @@ export default {
       showLogin: true,
       showRegister: false,
       loginForm: {
-        email: "1072344372@qq.com",
+        email: "1220440602@163.com",
         password: "123456789",
         rememberMe: "false",
       },

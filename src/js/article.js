@@ -6,46 +6,48 @@ export const addByArticle=(data)=>{
         data
     })
 }
-const all=()=>{
+export const all=()=>{
     return axios.request({
         url:'/api/article/all',//api/mobile/elogin
         method:'get',
     })
 }
-const deleteById=(id)=>{
+export const deleteById=(id)=>{
     return axios.request({
         url:'/api/article/delete/{id}='+id,//api/mobile/elogin
         method:'get',
     })
 }
-const edit=(article)=>{
+export const edit=(article)=>{
     return axios.request({
         url:'/api/article/edit',//api/mobile/elogin
         method:'post',
     })
 }
 
-const getArticlesByUserId=(id)=>{
+export const getArticlesByUserId=(id)=>{
     return axios.request({
         url:'/api/article/getArticles/'+id,//api/mobile/elogin
         method:'get',
     })
 }
-const oneById=(data)=>{
+export const findArticleById=(id)=>{
     return axios.request({
-        url:'/api/article/one',//api/mobile/elogin
+        url:'/api/article/one',
         method:'get',
-        data
+        params:id
     })
 }
-const getArticlesByPage=(data)=>{
+
+
+export const getArticlesByPage=(data)=>{
     return axios.request({
         url:'/api/article/page',//api/mobile/elogin
         method:'post',
         data
     })
 }
-const getArticlesByCateId=(cateId)=>{
+export const getArticlesByCateId=(cateId)=>{
     return axios.request({
         url:'/api/article/'+cateId,//api/mobile/elogin
         method:'get',
@@ -56,9 +58,4 @@ export const articleCatAll=()=>{
         url:'/api/articleCat/all',//api/mobile/elogin
         method:'get',
     })
-}
-
-//导出请求方法
-export {
-all,deleteById,edit,getArticlesByUserId,getArticlesByCateId,getArticlesByPage,oneById,
 }

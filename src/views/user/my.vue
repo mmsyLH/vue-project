@@ -47,8 +47,8 @@
                 </div>
 
                 <div>{{ truncateContent(article.content, 3) }}</div>
-                <div>更新时间: {{ article.updateTime }}</div>
-                <div>更新时间: {{ truncateContent(article.updateTime, 3) }}</div>
+                <div>更新时间: {{formatDate(article.updateTime)  }}</div>
+                <div>更新时间: {{formatDate(article.updateTime)  }}</div>
 
               </el-card>
             </div>
@@ -126,6 +126,7 @@ import {ElAvatar, ElHeader, ElMain, ElCollapse, ElCollapseItem, ElMessage} from 
 import {useArticleStore} from "@/store/modules/article";
 import Aside from "@/App.vue";
 import {useUserStore} from "@/store/modules/user";
+import {formatDate} from "@/utils/auth";
 
 export default {
   components: {
@@ -201,6 +202,7 @@ export default {
   mounted() {
   },
   methods: {
+    formatDate,
 
     truncateContent(content, lines) {
       // 根据行数截取内容并添加省略号

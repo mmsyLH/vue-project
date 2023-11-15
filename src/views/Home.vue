@@ -52,7 +52,7 @@ export default {
       currenIndex: 0,
       catDrawer: false,
       catList: [],
-      curCat: 1,
+      curCat: 4,
       articles: [
         {
           shortTitle: "Button 按钮",

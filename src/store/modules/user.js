@@ -53,7 +53,6 @@ export const useUserStore = defineStore('user', {
                         if (!getToken()) {
                             setToken(res.data.userinfo.token)//存在cookies
                         }
-
                         console.log("res:", res.data.userinfo)
                         this.user = res.data.userinfo;
                         resolve(res);

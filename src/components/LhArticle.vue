@@ -8,7 +8,7 @@
         <time class="time" style="flex: 1">{{ formattedUpdateTime }}</time>
         <div style="flex:2;font-size: 20px"> 作者：{{ getAuthorName(userinfoId) }}</div>
         <div>
-          <el-button type="default" class="button" style="flex: 1">
+          <el-button type="default" class="button" style="flex: 1" @click="viewDetails(articleId)">
             <el-space>查看详情</el-space>
           </el-button>
         </div>
@@ -78,6 +78,11 @@ export default {
       const numericId = parseInt(id, 10); // 将传入的 id 转换为数字
       const name = useUserStore().getUserNameById(numericId);
       return name ? name : "未知";
+    },
+    viewDetails(articleId) {
+      console.log("LhArticle.vue接收到的articleId：", articleId);
+      console.log("articleId的类型：", typeof articleId);
+      this.$router.push({ name: 'lhArticleDetails', query: { articleId: articleId } });
     },
   },
 };

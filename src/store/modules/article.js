@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia';
-import {all, getArticlesByCateId, getArticlesByUserId, articleCatAll, addByArticle} from '@/js/article';
+import {all, getArticlesByCateId, getArticlesByUserId, articleCatAll, addByArticle,findArticleById} from '@/js/article';
 import {useUserStore} from "@/store/modules/user";
 
 export const useArticleStore = defineStore('article', {
@@ -57,12 +57,26 @@ export const useArticleStore = defineStore('article', {
             });
         },
 
-        //查询个人
+        //查询个人文章
         findArticleByUserId(id) {
             return new Promise((resolve, reject) => {
                 getArticlesByUserId(id)
                     .then(res => {
                         this.articleCount = res.data.articles.length
+                        console.log("res:",res)
+                        resolve(res);
+                    })
+                    .catch(error => {
+                        reject(error);
+                    });
+            });
+        },
+        //通过文章id查询文章
+        findArticleById(id) {
+            console.log("article中的findArticleById:",id)
+            return new Promise((resolve, reject) => {
+                findArticleById({id:id})
+                    .then(res => {
                         resolve(res);
                     })
                     .catch(error => {
